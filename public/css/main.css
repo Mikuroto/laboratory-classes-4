@@ -9,11 +9,12 @@ body {
 
 main {
   padding: 2rem;
-  text-align: center;
+  text-align: left;
 }
 
 .heading {
-  color: white;
+  text-align: center;
+  color: #333;
   margin: 0;
   font-size: 2.2rem;
 }

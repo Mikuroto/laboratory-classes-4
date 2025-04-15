@@ -12,7 +12,10 @@
       <ul>
         <% products.forEach(product => { %>
         <li>
-          Name: <%= product.name %>, Description: <%= product.description %>
+          Name: <%= product.name %>,<br />
+          Description: <%= product.description %><br />
+          <a href="/products/<%= product.name %>">Details<br /></a>
+          <button onclick="deleteProduct('<%= product.name %>')">Delete</button>
         </li>
         <% }); %>
       </ul>
@@ -30,14 +33,19 @@
 
       fetch(`/products/${name}`, {
         method: "DELETE",
-      }).then((response) => {
-        console.log(response);
-        if (response.ok) {
-          window.location.reload();
-        } else {
-          alert("Error while removing product.");
-        }
-      });
+      })
+        .then((response) => {
+          console.log(response);
+          if (response.ok) {
+            window.location.reload();
+          } else {
+            alert("Error while removing product.");
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting product:", error);
+          alert("Error connecting to the server to remove product.");
+        });
     }
   </script>
 </html>
